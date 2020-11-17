@@ -1,14 +1,17 @@
-//Alex Ortega
+/* Alex Ortega
+ * The AmazonDocCom class will be responsible to handle each Order object
+ * inside the AmazonDotCom shopping cart. 
+*/
 
 public class AmazonDotCom{  
   
   Order first, last;
   
-  public boolean isEmpty(){//isEmpty
+  public boolean isEmpty(){ //isEmpty
     return first == null; 
   }
   
-  public void add(Order s){//add
+  public void add(Order s){ //add
     
     Order n = s;
     if(isEmpty())
@@ -19,10 +22,11 @@ public class AmazonDotCom{
     }
   }
   
-  public Order findMostExpensiveOrder(){//findMostExpensiveOrder
+  public Order findMostExpensiveOrder(){ //findMostExpensiveOrder
     return findMostExpensiveOrder(first);
   }  
   private Order findMostExpensiveOrder(Order check){
+
     Order expensive = check;
     while(check != null){
       if(check.getTotalPerOrder() > expensive.getTotalPerOrder()){
@@ -34,7 +38,7 @@ public class AmazonDotCom{
     return expensive;
   }
   
-  public Order findMostCheapestOrder(){//findMostCheapestOrder
+  public Order findMostCheapestOrder(){ //findMostCheapestOrder
     return findMostCheapestOrder(first);
   }  
   private Order findMostCheapestOrder(Order check){
@@ -50,22 +54,20 @@ public class AmazonDotCom{
     return cheapest;
   }
   
-  public void print(){//print
+  public void print(){ //print
     print(first); 
   }  
   private void print(Order ref){
     
     if(ref != null){
-      
       System.out.println(ref);
       print(ref.next);
     }
   }
   
-  public int getLength(){//getLength
+  public int getLength(){ //getLength
     return getLength(first);
-  }
-  
+  }  
   private int getLength(Order ref){
     
     while(ref != null){
@@ -74,7 +76,7 @@ public class AmazonDotCom{
     return 0;
   }
   
-  public void sortList(){//sortList
+  public void sortList(){ //sortList
     
     int size = getLength();
     Order[] order = new Order[size];
@@ -86,23 +88,22 @@ public class AmazonDotCom{
     }
     sorting(order, 0);
     printArray(order);
-  }  
-  private void sorting(Order[] a, int s){
-    Order x;    
-    for(int i = 1; i < a.length; i++){
-      
-      x = a[i];
-      s = i;
-      while(s > 0 && a[s-1].getProductName().charAt(0) >
-            x.getProductName().charAt(0)){
-        a[s] = a[s-1];
-        s--;
+  } 
+  private void sorting(Order[] orderArray, int aux){ //sorting
+
+    Order order = null;    
+    for(int i = 1; i < orderArray.length; i++){
+      order = orderArray[i];
+      aux = i;
+      while(aux > 0 && orderArray[aux-1].getProductName().charAt(0) > order.getProductName().charAt(0)){
+        orderArray[aux] = orderArray[aux-1];
+        aux--;
       }
-      a[s] = x;
+      orderArray[aux] = order;
     }    
   }
   
-  public boolean findOrder(Order t){//findOrder
+  public boolean findOrder(Order t){ //findOrder
     return findOrder(t, first); 
   }
   private boolean findOrder(Order t, Order ref){
@@ -114,7 +115,7 @@ public class AmazonDotCom{
     return false;
   }
   
-  public int countOccurrences(Order t){//countOccurrences
+  public int countOccurrences(Order t){ //countOccurrences
     return countOccurrences(t, first); 
   }
   private int countOccurrences(Order t, Order ref){
@@ -126,7 +127,7 @@ public class AmazonDotCom{
     return 0;
   }
   
-  public void printArray(Order[] o){//printArray
+  public void printArray(Order[] o){ //printArray
     for(Order x: o)
       System.out.println(x);
   }
